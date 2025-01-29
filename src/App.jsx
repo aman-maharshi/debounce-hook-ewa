@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Search from "../public/Search.svg?react"
+import useDebounce from './useDebounce'
 
 const App = () => {
   const [searchText, setSearchText] = useState("")
 
+  const debouncedSearchText = useDebounce(searchText, 500)
+
   useEffect(() => {
-    if (searchText) {
-      console.log(searchText)
+    if (debouncedSearchText) {
+      console.log(debouncedSearchText)
     }
-  }, [searchText])
+  }, [debouncedSearchText])
 
   return (
     <div className='p-4 flex min-h-screen bg-[#f3f3f3]'>
